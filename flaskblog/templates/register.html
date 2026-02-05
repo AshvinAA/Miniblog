@@ -10,18 +10,20 @@
                 <legend class="border-bottom mb-4"> Join Today </legend>
                 <!-- USERNAME -->
                 <div class="form-group">
-                    {{ form.username.label( class="form-control-label" ) }} 
-                    {% if form.username.errors%}
-                        {{ form.username( class="form-control-label form-control-lg is-invalid" ) }}
-                            <div class= "invalid-feedback">
-                                {% for errors in form.username.errors %}
-                                    <span> {{ error }} </span>
-                                {% endfor %}
-                            </div>
-                    {%else%}
-                        {{ form.username( class="form-control-label form-control-lg" ) }}
-                    {%endif%}
+                    {{ form.username.label(class="form-control-label") }}
                     
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {# FIXED: Changed "errors" to "error" below #}
+                            {% for error in form.username.errors %} 
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {# RECOMMENDATION: Removed "form-control-label" from the input class #}
+                        {{ form.username(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
                 <!-- EMAIL -->
                 <div class="form-group">
